@@ -80,30 +80,20 @@ const actions = {
     // context.forecast = apiCall(context.loc)
     context.balance = 'your account balance is $1000;';
     cb(context);
-  }, ['get-username']({sessionId, context, cb}) {
+  }, 
+  ['get-username']({sessionId, context, entities, cb}) {
     const recipientId = sessions[sessionId].fbid;
     const name = sessions[sessionId].name;
     if(recipientId) {
-       
-		   const qs = 'access_token=' + encodeURIComponent(FB_PAGE_TOKEN);
-			return fetch('https://graph.facebook.com/v2.8/' + encodeURIComponent(id) +'?' + qs)
-				.then(rsp => rsp.json())
-				.then(json => {
-			if (json.error && json.error.message) {
-				throw new Error(json.error.message);
-			}
-			context.userName = json.first_name;
-			cb(context);
-		 
-	});
-      /**   
-	  return new Promise(function(resolve, reject) {
+      return new Promise(function(resolve, reject) {
         if (!name) {
           return requestUserName(recipientId)
           .then((json) => {
-            context.userName = json.first_name;
+			  context.userName = json;
+			  cb(context);
+            /* context.userName = json.first_name;
             sessions[sessionId].name = json.first_name;
-            resolve(context);
+            resolve(context); */
           })
           .catch((err) => {
             console.error('Oops! An error occurred while asking the name of the user: ',
@@ -111,17 +101,28 @@ const actions = {
           });
         } else {
           // Retrieve the name of the user 
-          context.userName = name;
-          cb(context)
-		  //return resolve(context);
+          context.userName = "User";
+		  cb(context);
+          //return resolve(context);
         }
       });
-	  ***/
     } else {
-			context.userName = "user";
-			cb(context);
-      } 
+      console.error('Oops! Couldn\'t find user for session:', sessionId);
+      // Giving the wheel back to our bot
+      return Promise.resolve()
+    } 
   },
+const requestUserName = (id) => {
+  const qs = 'access_token=' + encodeURIComponent(FB_PAGE_TOKEN);
+  return fetch('https://graph.facebook.com/v2.8/' + encodeURIComponent(id) +'?' + qs)
+  .then(rsp => rsp.json())
+  .then(json => {
+    if (json.error && json.error.message) {
+      throw new Error(json.error.message);
+    }
+    return json;
+  });
+};  
 };
 
 

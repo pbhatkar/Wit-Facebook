@@ -112,17 +112,17 @@ const actions = {
       return Promise.resolve()
     } 
   },
-const requestUserName = (id) => {
-  const qs = 'access_token=' + encodeURIComponent(FB_PAGE_TOKEN);
-  return fetch('https://graph.facebook.com/v2.8/' + encodeURIComponent(id) +'?' + qs)
-  .then(rsp => rsp.json())
-  .then(json => {
-    if (json.error && json.error.message) {
-      throw new Error(json.error.message);
-    }
-    return json;
-  });
-};  
+	const requestUserName = (id) => {
+	const qs = 'access_token=' + encodeURIComponent(FB_PAGE_TOKEN);
+		return fetch('https://graph.facebook.com/v2.9/' + encodeURIComponent(id) +'?' + qs)
+		.then(rsp => rsp.json())
+		.then(json => {
+		if (json.error && json.error.message) {
+			throw new Error(json.error.message);
+		}
+		return json;
+		});
+	};,  
 };
 
 

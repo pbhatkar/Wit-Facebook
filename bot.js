@@ -82,47 +82,11 @@ const actions = {
     cb(context);
   }, 
   ['get-username']({sessionId, context, entities, cb}) {
-    const recipientId = sessions[sessionId].fbid;
-    const name = sessions[sessionId].name;
-    if(recipientId) {
-      return new Promise(function(resolve, reject) {
-        if (!name) {
-          return requestUserName(recipientId)
-          .then((json) => {
-			  context.userName = json;
-			  cb(context);
-            /* context.userName = json.first_name;
-            sessions[sessionId].name = json.first_name;
-            resolve(context); */
-          })
-          .catch((err) => {
-            console.error('Oops! An error occurred while asking the name of the user: ',
-              err.stack || err);
-          });
-        } else {
-          // Retrieve the name of the user 
-          context.userName = "User";
-		  cb(context);
-          //return resolve(context);
-        }
-      });
-    } else {
-      console.error('Oops! Couldn\'t find user for session:', sessionId);
-      // Giving the wheel back to our bot
-      return Promise.resolve()
-    } 
+	  context.userName = JSON.stringify(sessionId);
+    cb(context);
+     
   },
-	const requestUserName = (id) => {
-	const qs = 'access_token=' + encodeURIComponent(FB_PAGE_TOKEN);
-		return fetch('https://graph.facebook.com/v2.9/' + encodeURIComponent(id) +'?' + qs)
-		.then(rsp => rsp.json())
-		.then(json => {
-		if (json.error && json.error.message) {
-			throw new Error(json.error.message);
-		}
-		return json;
-		});
-	};,  
+	  
 };
 
 

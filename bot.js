@@ -80,7 +80,7 @@ const actions = {
     // context.forecast = apiCall(context.loc)
     context.balance = 'your account balance is $1000;';
     cb(context);
-  },['get-username'](sessionId, context, entities, cb) {
+  },['get-username'](context, entities, cb) {
 	    const user = firstEntityValue(entities, 'username');
 		//console.log(user);
     

@@ -80,6 +80,15 @@ const actions = {
     // context.forecast = apiCall(context.loc)
     context.balance = 'your account balance is $1000;';
     cb(context);
+  },['get-username'](context,entities,cb) {
+	    const name = firstEntityValue(entities, 'username');
+    if (name) {
+      context.name = "hey Mohsin"; // store it in context
+    }else{
+		context.name = "hey user";
+	}
+
+    cb(context);
   },
 };
 

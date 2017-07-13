@@ -81,10 +81,10 @@ const actions = {
     context.balance = 'your account balance is $1000;';
     cb(context);
   },['get-username'](context,entities,cb) {
-	    const name = firstEntityValue(entities, 'username');
-		console.log(name);
+	    const user = firstEntityValue(entities, 'username');
+		console.log(user);
     if (name) {
-      context.user = "hey Mohsin "+name; // store it in context
+      context.user = "hey Mohsin "+user; // store it in context
     }else{
 		context.user  = "hey user";
 	}

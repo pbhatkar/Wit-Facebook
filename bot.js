@@ -83,9 +83,9 @@ const actions = {
   },['get-username'](context,entities,cb) {
 	    const name = firstEntityValue(entities, 'username');
     if (name) {
-      context.name = "hey Mohsin"; // store it in context
+      context.username = "hey Mohsin";; // store it in context
     }else{
-		context.name = "hey user";
+		context.username = "hey user";
 	}
 
     cb(context);

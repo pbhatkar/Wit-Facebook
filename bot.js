@@ -59,15 +59,7 @@ const actions = {
     const loc = firstEntityValue(entities, 'location');
     if (loc) {
       context.loc = loc; // store it in context
-	  context.myuserresponse = 'Mohsin';
     }
-
-    cb(context);
-  },
-  getUserName(sessionId, context, entities, message, cb) {
-    const user = firstEntityValue(entities, 'username');
-	
-	context.myuserresponse = 'hey zakaiter';
 
     cb(context);
   },
@@ -87,6 +79,14 @@ const actions = {
     // Here should go the api call, e.g.:
     // context.forecast = apiCall(context.loc)
     context.balance = 'your account balance is $1000;';
+    cb(context);
+  },['get-username'](context, entities, cb) {
+	    const username = firstEntityValue(entities, 'username');
+		//console.log(user);
+    
+		context.username  = username;
+	
+
     cb(context);
   },
 };

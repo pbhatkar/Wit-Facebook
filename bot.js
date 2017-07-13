@@ -86,7 +86,7 @@ const actions = {
     if (name) {
       context.user = "hey Mohsin "+name; // store it in context
     }else{
-		context.user = "hey user";
+		context.user  = "hey user";
 	}
 
     cb(context);

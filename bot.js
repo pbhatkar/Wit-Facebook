@@ -5,6 +5,38 @@
 const Wit = require('node-wit').Wit;
 const FB = require('./facebook.js');
 const Config = require('./const.js');
+var sf = require('node-salesforce');
+
+
+function login(){
+	alert('login');
+	var conn = new sf.Connection({
+	  oauth2 : {
+		// you can change loginUrl to connect to sandbox or prerelease env. 
+		// loginUrl : 'https://test.salesforce.com', 
+		clientId : '3MVG9d8..z.hDcPL8Cc73Am729Id_dHpSGA5idrmc4gdH0LtXpe8p1Eew6jwE6T6yY5txmXRxQPQL0RjF8jjB',
+		clientSecret : '613084951392011949',
+		redirectUri : 'https://ysurancedemo-dev-ed.my.salesforce.com/services/oauth2/token'
+	  }
+	  
+	});
+	conn.login('ysuranceadmin@capgemini.com', 'capgemini@123', function(err, userInfo) {
+	  if (err) { return console.error(err); }
+	  // Now you can get the access token and instance URL information. 
+	  // Save them to establish connection next time. 
+	  
+	  alert('login success');
+	  console.log(conn.accessToken);
+	  console.log(conn.instanceUrl);
+	  // logged in user property 
+	  console.log("User ID: " + userInfo.id);
+	  console.log("Org ID: " + userInfo.organizationId);
+	  // ... 
+	});
+
+}
+login();
+
 
 const firstEntityValue = (entities, entity) => {
   const val = entities && entities[entity] &&
@@ -82,6 +114,7 @@ const actions = {
     cb(context);
   },['get-username'](context, entities, cb) {
 	    const username = firstEntityValue(entities, 'username');
+		
 		//console.log(user);
     
 		context.username  = 'Mohsin';

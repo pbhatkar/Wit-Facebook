@@ -8,9 +8,7 @@ const Config = require('./const.js');
 var sf = require('node-salesforce');
 
 
-function login(){
-	console.log('login');
-	 var conn = new sf.Connection({
+var conn = new sf.Connection({
 	  oauth2 : {
 		// you can change loginUrl to connect to sandbox or prerelease env. 
 		// loginUrl : 'https://test.salesforce.com', 
@@ -20,6 +18,9 @@ function login(){
 	  }
 	  
 	});
+function login(){
+	console.log('login');
+	 
 	conn.login('ysuranceadmin@capgemini.com', 'capgemini@123HLPsbpyzb2nQGJLeqsVLORFOb', function(err, userInfo) {
 	  if (err) { 
 	  	console.log('error');
@@ -27,17 +28,35 @@ function login(){
 	  return console.error(err); }
 	  // Now you can get the access token and instance URL information. 
 	  // Save them to establish connection next time. 
-	  	console.log('success');
+	  	//console.log('success');
 
-	  console.log(conn.accessToken);
-	  console.log(conn.instanceUrl);
+	  //console.log(conn.accessToken);
+	  //console.log(conn.instanceUrl);
 	  // logged in user property 
-	  console.log("User ID: " + userInfo.id);
-	  console.log("Org ID: " + userInfo.organizationId);
+	  //console.log("User ID: " + userInfo.id);
+	  //console.log("Org ID: " + userInfo.organizationId);
+	  console.log(JSON.stringify(userInfo));
 	  // ... 
+	  getPolicyDetails();
 	}); 
+	
+	
+	
+}
+
+function getPolicyDetails(){
+	
+	conn.apex.get('/services/apexrest/AXA_ChatbotDetailsV2?policynum=3254546', function(err, res) {
+	 if (err) { 
+	  	console.log('error');
+
+	  return console.error(err); }
+	 	
+		console.log(JSON.stringify(res));
+	});
 
 }
+
 login();
 
 

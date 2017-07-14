@@ -21,11 +21,14 @@ function login(){
 	  
 	});
 	conn.login('ysuranceadmin@capgemini.com', 'capgemini@123HLPsbpyzb2nQGJLeqsVLORFOb', function(err, userInfo) {
-	  if (err) { return console.error(err); }
+	  if (err) { 
+	  	console.log('error');
+
+	  return console.error(err); }
 	  // Now you can get the access token and instance URL information. 
 	  // Save them to establish connection next time. 
-	  
-	  alert('login success');
+	  	console.log('success');
+
 	  console.log(conn.accessToken);
 	  console.log(conn.instanceUrl);
 	  // logged in user property 

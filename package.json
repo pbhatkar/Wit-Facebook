@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Simple Wit-Facebook",
   "main": "index.js",
+  "engines": {
+    "node": ">=8.1.0"
+  }
   "scripts": {
     "start": "node index.js",
     "bot": "node bot.js",

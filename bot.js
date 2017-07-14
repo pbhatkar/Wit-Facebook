@@ -9,8 +9,8 @@ var sf = require('node-salesforce');
 
 
 function login(){
-	alert('login');
-	var conn = new sf.Connection({
+	console.log('login');
+	 var conn = new sf.Connection({
 	  oauth2 : {
 		// you can change loginUrl to connect to sandbox or prerelease env. 
 		// loginUrl : 'https://test.salesforce.com', 
@@ -32,7 +32,7 @@ function login(){
 	  console.log("User ID: " + userInfo.id);
 	  console.log("Org ID: " + userInfo.organizationId);
 	  // ... 
-	});
+	}); 
 
 }
 login();

@@ -1,7 +1,3 @@
-# Wit-Facebook
-[![Build Status](https://travis-ci.org/hunkim/Wit-Facebook.svg?branch=master)](https://travis-ci.org/hunkim/Wit-Facebook)
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/7442b6c4eb6b48a890d751c0da5a3b6d)](https://www.codacy.com/app/hunkim/Wit-Facebook)
-
 Wit.ai and Facebook Messenger Integration Example
 ## Initial Installation
 Fork this repository and clone.
@@ -15,10 +11,6 @@ npm install
 ## Configuration
 ### Wit Setting
 
-Go to https://wit.ai/home and create a wit app for you. Read https://wit.ai/docs/quickstart and see a demo at: https://wit.ai/sungkim/weather/stories.
-Then, go to the setting in your wit app and get the token id.
-
-![image](https://cloud.githubusercontent.com/assets/901975/14757067/58f03050-0922-11e6-813d-831df8614303.png)
 
 Test the bot.js with your WIT_TOKEN, and make sure the bot is working.
 ```bash

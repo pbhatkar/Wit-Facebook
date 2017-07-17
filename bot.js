@@ -5,60 +5,6 @@
 const Wit = require('node-wit').Wit;
 const FB = require('./facebook.js');
 const Config = require('./const.js');
-var sf = require('node-salesforce');
-
-
-var conn = new sf.Connection({
-	  oauth2 : {
-		// you can change loginUrl to connect to sandbox or prerelease env. 
-		// loginUrl : 'https://test.salesforce.com', 
-		clientId : '3MVG9d8..z.hDcPL8Cc73Am729Id_dHpSGA5idrmc4gdH0LtXpe8p1Eew6jwE6T6yY5txmXRxQPQL0RjF8jjB',
-		clientSecret : '613084951392011949',
-		redirectUri : 'https://ysurancedemo-dev-ed.my.salesforce.com/services/oauth2/token'
-	  }
-	  
-	});
-function login(){
-	console.log('login');
-	 
-	conn.login('ysuranceadmin@capgemini.com', 'capgemini@123HLPsbpyzb2nQGJLeqsVLORFOb', function(err, userInfo) {
-	  if (err) { 
-	  	console.log('error');
-
-	  return console.error(err); }
-	  // Now you can get the access token and instance URL information. 
-	  // Save them to establish connection next time. 
-	  	//console.log('success');
-
-	  //console.log(conn.accessToken);
-	  //console.log(conn.instanceUrl);
-	  // logged in user property 
-	  //console.log("User ID: " + userInfo.id);
-	  //console.log("Org ID: " + userInfo.organizationId);
-	  console.log(JSON.stringify(userInfo));
-	  // ... 
-	  getPolicyDetails();
-	}); 
-	
-	
-	
-}
-
-function getPolicyDetails(){
-	
-	conn.apex.get('/services/apexrest/AXA_ChatbotDetailsV2?policynum=3254546', function(err, res) {
-	 if (err) { 
-	  	console.log('error');
-
-	  return console.error(err); }
-	 	
-		console.log(JSON.stringify(res));
-	});
-
-}
-
-login();
-
 
 const firstEntityValue = (entities, entity) => {
   const val = entities && entities[entity] &&
